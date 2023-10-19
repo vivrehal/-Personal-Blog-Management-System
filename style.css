@@ -1,39 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 *{
     margin: 0px;
     padding: 0px;
 }
 body {
     font-family: Arial, sans-serif;
+    color: white;
+    font-family:'Rubik', sans-serif;;
+    background: linear-gradient(114deg, rgba(2,0,36,1) 0%, rgba(6,19,58,1) 100%, rgba(0,212,255,1) 100%);
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
 }
 
 button {
-    margin-top: 10px;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    background: #b80ba7;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    align-items:flex-end;
+    cursor: pointer;
 }
 
 .blogsContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 2rem;
 }
 
 .header{
     display: flex;
-    justify-content: space-between;
+    background: #17151b;
+    justify-content:space-between;
+    box-shadow: 0px 2px 20px #060506;
     flex-direction: row;
-    margin: 1rem 1rem;
+    padding: 1rem 3rem;
 }
 
 .blogCards{
-    width: 20vw;
-    border: 2px solid black;
+    width: 20%;
+    height: fit-content;
+    border: 2px solid rgba(255, 0, 200, 0.311);
+    padding: 1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.084);
+    box-shadow: -2px 2px 50px rgb(17, 17, 106);
 }
-.blogCards img{
+.blogCards a img{
+    padding: 0.5rem 0rem;
     width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.blogCards a{
+    text-decoration: none;
+}
+
+.cardTitle{
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 0.5rem 0rem;
+}
+
+.blogCardsbtns{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0.2rem;
+}
+.blogCardsbtns button{
+    cursor: pointer;
+    padding: 0.5rem 1rem ;
+}
+.blogCardsbtns button:hover{
+    box-shadow: -2px 2px 6px rgba(255, 255, 255, 0.153);
+}
+
+/* blog.html */
+.ql-toolbar{
+    background: rgb(12, 11, 11);
+    border-radius: 20px 20px 0px 0px;
+    color: white;
+}
+.ql-snow{
+    border: 0px;
+}
+.ql-container{
+    min-height:50vh;
+    background: rgb(12, 11, 11);
+    color: white;
+    border-color: black;
+    border-radius: 0px 0px 20px 20px ;
+}
+
+.labelNames{
+    font-size: 1.5rem;
+}
+.blogtitleContainer{
+    margin: 2rem;
+}
+.blogcoverContainer{
+    margin: 2rem;
+}
+input[type=file]::file-selector-button {
+    margin-left: 2rem;
+    border: none;
+    background: #b80ba7;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: medium;
+    transition: background .2s ease-in-out;
+  }
+input[type=file]::file-selector-button:hover {
+    background: #ff03e6;
+}
+input[type=text] {
+    padding: 0.5rem 0.5rem;
+    margin-left: 7.5rem;
+    width: 30vw;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: large;
+}
+
+.embeddedbtn{
+    position: relative;
+    bottom: 2.5rem;
+    left: 95%;
 }
