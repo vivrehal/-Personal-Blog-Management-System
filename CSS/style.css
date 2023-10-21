@@ -53,6 +53,10 @@ button:hover{
 .header h1{
     text-shadow: -2px 2px 1px #0b36b8;
 }
+.header h1 a{
+    text-decoration: none;
+    color: white;
+}
 .header button:hover{
     background: var(--btnhover);
 }
@@ -132,6 +136,13 @@ input[type=text] {
     font-size: large;
 }
 
+.search-container input{
+    width: 10rem;
+    margin-right: 2rem;
+    font-size: smaller;
+    border: none;
+}
+
 .editorfooter{
     background: #0c0b0b;
     padding: 0.5rem;
@@ -165,4 +176,16 @@ input[type=text] {
     .blogCards{
         width: 50vw;
     }
+    .search-container input{
+        width: 5rem;
+        margin: 0px;
+    }
+    .search-container{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    /* .createBtn{
+        width: 4rem;
+    } */
 }
