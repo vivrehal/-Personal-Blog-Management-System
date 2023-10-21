@@ -151,8 +151,11 @@ input[type=text] {
     color: rgb(255, 0, 43);
 }
 
-/* media query for index.html */
+/* media query for index.html and blog.html */
 @media only screen and (max-width: 768px) {
+    .header{
+        font-size: smaller;
+    }
     .blogsContainer{
         flex-direction: column;
         justify-content:center;
