@@ -17,6 +17,7 @@ if(window.location.href.includes('blog.html'))
     const oldblog = getBlogById(oldblogId);
     if(oldblog){
         document.getElementById("editor").innerHTML=oldblog.content;
+        document.getElementById("cover").src=`${oldblog.url}>`;
         document.getElementById("title").value=oldblog.title; 
     }
 
@@ -91,7 +92,7 @@ async function saveBlog(){
 
     const cover=document.getElementById("cover");
     const reader = new FileReader();
-    const img={url:"https://images.pexels.com/photos/18786198/pexels-photo-18786198/free-photo-of-a-ladder-is-leaning-against-a-wall-in-the-sun.jpeg"};
+    const img={url:"../assets/noImg.png"};
     let blogs = JSON.parse(localStorage.getItem("blogs")) || [];
     const blog = {id:Date.now(), title, content, ...img};
     blogs.push(blog);
@@ -105,6 +106,12 @@ async function saveBlog(){
         localStorage.setItem("blogs", JSON.stringify(blogsc));
         // console.log(img.url)
         });
+    }
+    else{
+        let blogsc = JSON.parse(localStorage.getItem("blogs")) || [];
+        const oldUrl=document.getElementById("cover").src;
+        blogsc[blogsc.length-1].url=oldUrl.substring(0,oldUrl.length-1);
+        localStorage.setItem("blogs", JSON.stringify(blogsc));
     }
     // console.log(img.url)
     if(oldblog){
