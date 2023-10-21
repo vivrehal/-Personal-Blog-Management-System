@@ -144,10 +144,10 @@ input[type=text] {
 .template:link{
     color: rgb(198, 194, 195);
 }
-.template:hover{
+.template:visited{
     color: rgb(255, 0, 43);
 }
-.template:visited{
+.template:hover{
     color: rgb(255, 0, 43);
 }
 
