@@ -4,15 +4,15 @@ const underlineBtn = document.getElementById("underlineBtn");
 const textColorInput = document.getElementById("textColor");
 const editor = document.getElementById("editor");
 
-
-
-boldBtn.addEventListener("click", () => {
-    document.execCommand("bold", false, null);
-    editor.focus();
-});
+//functions
 
 italicBtn.addEventListener("click", () => {
     document.execCommand("italic", false, null);
+    editor.focus();
+});
+
+boldBtn.addEventListener("click", () => {
+    document.execCommand("bold", false, null);
     editor.focus();
 });
 
