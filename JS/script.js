@@ -29,7 +29,7 @@ if(window.location.href.includes('blog.html'))
             method: 'POST',
             headers: {
                 'content-type': 'application/x-www-form-urlencoded',
-                'X-RapidAPI-Key': '613e5f48b5mshb5bc8c987ced152p1c6567jsnd24e699e5ec5',
+                'X-RapidAPI-Key': '950072f557mshab8ccb497d098fap152b4cjsn9ee3a9b679a1',
                 'X-RapidAPI-Host': 'neutrinoapi-bad-word-filter.p.rapidapi.com'
             },
             body: new URLSearchParams({
@@ -96,7 +96,8 @@ async function saveBlog(){
     const blog = {id:Date.now(), title, content, ...img};
     blogs.push(blog);
     localStorage.setItem("blogs", JSON.stringify(blogs));
-    if(cover.files){
+    if(cover?.files && cover.files.length>0){
+        
         reader.readAsDataURL(cover.files[0]);
         reader.addEventListener("load",()=>{
         let blogsc = JSON.parse(localStorage.getItem("blogs")) || [];
