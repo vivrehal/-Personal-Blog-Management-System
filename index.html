@@ -9,9 +9,12 @@
 </head>
 <body>
     <div class="header">
-    <h1><i class="fa-solid fa-pen fa-rotate-270" style="color: #ffffff;"></i>... Blogism</h1>
-    <button onclick="location.href='HTML/blog.html'">Create Blog</button>
+    <h1><a href="./index.html"><i class="fa-solid fa-pen fa-rotate-270" style="color: #ffffff;"></i>... Blogism</h1></a>
+    <div id="search-container" class="search-container">
+    <input type="text" id="searchInput" class="searchInp" placeholder="Search blogs...">
+    <button class="createBtn" onclick="location.href='HTML/blog.html'">Create Blog</button>
     </div>
+</div>
     <div class="container">
         <div id="blogs" class="blogsContainer"></div>
     </div>
