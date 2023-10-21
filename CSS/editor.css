@@ -35,13 +35,23 @@ input[type="number" ]{
 
 .toolbar button{
     background: #0c0b0b;
-    padding: 0px;
     border: 1px solid white;
-    padding: 0.2rem;
+    padding: 0.2rem 0.5rem;
 }
+
 #alignment{
     padding: 0px;
     height: 20px;
     border: none;
     border-radius: 5px;
+}
+.activeItalic{
+    font-style: italic;
+}
+.activeBold{
+    font-weight: 800;
+}
+
+.activeUnderline{
+    text-decoration: underline;
 }
