@@ -1,0 +1,47 @@
+#editor{
+    height: 60vh;
+    background: #0c0b0b;
+    padding: 0.5rem;
+    border: 1px solid white;
+}
+
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1rem;
+    background: #0c0b0b;
+    border: 1px solid white;
+    border-radius:20px 20px 0px 0px;
+}
+input[type="color" i]{
+    padding: 0px;
+    height: 20px;
+    border: none;
+    width: 40px;
+}
+input[type="number" ]{
+    padding: 0px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+}
+.option{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 0.6rem;
+}
+
+.toolbar button{
+    background: #0c0b0b;
+    padding: 0px;
+    border: 1px solid white;
+    padding: 0.2rem;
+}
+#alignment{
+    padding: 0px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+}

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+:root {
+    --btnblue: #0b36b8;
+    --btnhover: #3456bc;
+}
+
 *{
     margin: 0px;
     padding: 0px;
@@ -11,19 +16,22 @@ body {
 }
 
 .container {
-    padding: 2rem;
+    padding: 2em;
 }
 
 button {
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5em 1em;
     border-radius: 10px;
-    background: #b80ba7;
+    background: var(--btnblue);
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     font-weight: 700;
     align-items:flex-end;
     cursor: pointer;
+}
+button:hover{
+    background: var(--btnhover);
 }
 
 .blogsContainer{
@@ -31,7 +39,7 @@ button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: start;
-    gap: 2rem;
+    gap: 2em;
 }
 
 .header{
@@ -40,20 +48,26 @@ button {
     justify-content:space-between;
     box-shadow: 0px 2px 20px #060506;
     flex-direction: row;
-    padding: 1rem 3rem;
+    padding: 1em 3em;
+}
+.header h1{
+    text-shadow: -2px 2px 1px #0b36b8;
+}
+.header button:hover{
+    background: var(--btnhover);
 }
 
 .blogCards{
     width: 20%;
     height: fit-content;
-    border: 2px solid rgba(255, 0, 200, 0.311);
-    padding: 1rem;
+    border: 2px solid var(--btnblue);
+    padding: 1em;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.084);
     box-shadow: -2px 2px 50px rgb(17, 17, 106);
 }
 .blogCards a img{
-    padding: 0.5rem 0rem;
+    padding: 0.5em 0em;
     width: 100%;
     height: 150px;
     border-radius: 10px;
@@ -68,52 +82,37 @@ button {
     font-weight: 700;
     color: rgb(255, 255, 255);
     text-align: center;
-    padding: 0.5rem 0rem;
+    padding: 0.5em 0em;
 }
 
 .blogCardsbtns{
     display: flex;
     justify-content: space-between;
-    margin: 0px 0.2rem;
+    margin: 0px 0.2em;
 }
 .blogCardsbtns button{
     cursor: pointer;
-    padding: 0.5rem 1rem ;
+    padding: 0.5em 1em ;
 }
 .blogCardsbtns button:hover{
-    box-shadow: -2px 2px 6px rgba(255, 255, 255, 0.153);
+    box-shadow: -2px 2px 6px var(--btnhover);
 }
 
 /* blog.html */
-.ql-toolbar{
-    background: rgb(12, 11, 11);
-    border-radius: 20px 20px 0px 0px;
-    color: white;
-}
-.ql-snow{
-    border: 0px;
-}
-.ql-container{
-    min-height:50vh;
-    background: rgb(12, 11, 11);
-    color: white;
-    border-color: black;
-    border-radius: 0px 0px 20px 20px ;
-}
 
 .labelNames{
-    font-size: 1.5rem;
+    font-size: 1.5em;
 }
 .blogtitleContainer{
-    margin: 2rem;
+    margin: 2em;
 }
 .blogcoverContainer{
-    margin: 2rem;
+    margin: 2em;
 }
 input[type=file]::file-selector-button {
-    margin-left: 2rem;
+    margin-left: 2em;
     border: none;
-    background: #b80ba7;
+    background: var(--btnblue);
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
@@ -122,19 +121,44 @@ input[type=file]::file-selector-button {
     transition: background .2s ease-in-out;
   }
 input[type=file]::file-selector-button:hover {
-    background: #ff03e6;
+    background: var(--btnhover);
 }
 input[type=text] {
-    padding: 0.5rem 0.5rem;
-    margin-left: 7.5rem;
+    padding: 0.5em 0.5em;
+    margin-left: 7.5em;
     width: 30vw;
     border-radius: 10px;
     font-weight: 700;
     font-size: large;
 }
 
-.embeddedbtn{
-    position: relative;
-    bottom: 2.5rem;
-    left: 95%;
+.editorfooter{
+    background: #0c0b0b;
+    padding: 0.5rem;
+    border: 1px solid white;
+    border-radius: 0px 0px 20px 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.template:link{
+    color: rgb(198, 194, 195);
+}
+.template:hover{
+    color: rgb(255, 0, 43);
+}
+.template:visited{
+    color: rgb(255, 0, 43);
+}
+
+/* media query for index.html */
+@media only screen and (max-width: 768px) {
+    .blogsContainer{
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+    }
+    .blogCards{
+        width: 50vw;
+    }
 }

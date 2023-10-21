@@ -11,48 +11,84 @@ function getBlogById(blogId) {
 
 if(window.location.href.includes('blog.html'))
 {
-    const quill = new Quill('#editor', {
-        theme: 'snow', // Specify the theme ('snow' or 'bubble')
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                ['blockquote', 'code-block'],
-              
-                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-                [{ 'direction': 'rtl' }],                         // text direction
-              
-                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-              
-                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-                [{ 'font': [] }],
-                [{ 'align': [] }],
-              
-                ['clean']
-            ]
-        },
-        placeholder: 'Write your blog here...',
-    });
+
 
     const oldblogId = getQueryParam('id');
     const oldblog = getBlogById(oldblogId);
     if(oldblog){
-        document.getElementById("cover")
-        quill.root.innerHTML=oldblog.content; 
+        document.getElementById("editor").innerHTML=oldblog.content;
+        document.getElementById("title").value=oldblog.title; 
     }
 
+    const saveBtn=document.getElementById("saveblogbtn");
+    saveBtn.addEventListener("click",saveBlog)
 
 
-function saveBlog(){
-    if(oldblog){
-        deleteBlog(oldblog.id)
-    }
+        const url = 'https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter';
+        const options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'X-RapidAPI-Key': '613e5f48b5mshb5bc8c987ced152p1c6567jsnd24e699e5ec5',
+                'X-RapidAPI-Host': 'neutrinoapi-bad-word-filter.p.rapidapi.com'
+            },
+            body: new URLSearchParams({
+                content: "",
+                'censor-character': '*'
+            })
+        };
+        
+
+        
+    
+
+
+async function saveBlog(){
+
     const title = document.getElementById("title").value; 
     console.log(title)
-    const content = quill.root.innerHTML; 
+    options.body=new URLSearchParams({
+        content: title,
+        'censor-character': '*'
+    })
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        console.log(result["is-bad"]);
+        const flag=(result["is-bad"]);
+        if(flag){
+            alert("Nsfw content found in Title");
+            return;
+        }
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+
+
+    const content = document.getElementById("editor").innerHTML; 
+    const contentText=document.getElementById("editor").textContent;
+    console.log(contentText)
+    options.body=new URLSearchParams({
+        content: contentText,
+        'censor-character': '*'
+    });
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        console.log(result["is-bad"]);
+        const flag=(result["is-bad"]);
+        if(flag){
+            alert("Nsfw content found in Content");
+            return;
+        }
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+
     const cover=document.getElementById("cover");
     const reader = new FileReader();
     const img={url:"https://images.pexels.com/photos/18786198/pexels-photo-18786198/free-photo-of-a-ladder-is-leaning-against-a-wall-in-the-sun.jpeg"};
@@ -66,19 +102,24 @@ function saveBlog(){
         let blogsc = JSON.parse(localStorage.getItem("blogs")) || [];
         blogsc[blogsc.length-1].url=reader.result;
         localStorage.setItem("blogs", JSON.stringify(blogsc));
-        console.log(img.url)
+        // console.log(img.url)
         });
     }
-    console.log(img.url)
+    // console.log(img.url)
+    if(oldblog){
+        deleteBlog(oldblog.id)
+    }
+    window.location.href = "../index.html";
+    }
+
+}
 
 
-    window.location.href = "index.html";
-}
-}
 else if (window.location.href.includes('index.html')){
     const blogsContainer = document.getElementById("blogs");
     function displayBlogs() {
         const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+        console.log(blogs)
         blogsContainer.innerHTML = "";
         blogs.forEach(blog => {
             const blogDiv = document.createElement("div");
@@ -88,7 +129,8 @@ else if (window.location.href.includes('index.html')){
     
             // Create a clickable link for each blog card
             const blogLink = document.createElement("a");
-            blogLink.href = `view.html?id=${blog.id}`;
+            blogLink.href = `../HTML/view.html?id=${blog.id}`;
+            blogLink.target="blank";
             blogLink.innerHTML = `
                 <h2 class="cardTitle">${blog.title.toUpperCase()}</h2>
                 <img src=${blog.url}>
@@ -126,7 +168,7 @@ else if(window.location.href.includes('view.html')){
         blogContent.innerHTML = blog.content;
     } else {
         // Handle blog not found
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     }
 
     
@@ -155,7 +197,9 @@ function deleteBlog(blogId) {
 }
 
 function updateBlog(blogId) {
-    window.location.href = `blog.html?id=${blogId}`;
+    window.location.href = `HTML/blog.html?id=${blogId}`;
     // Redirect the user to blog.html with the specific blogId in the URL for editing
 
 }
+
+
