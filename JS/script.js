@@ -129,7 +129,7 @@ else if (window.location.href.includes('index.html')){
     
             // Create a clickable link for each blog card
             const blogLink = document.createElement("a");
-            blogLink.href = `../HTML/view.html?id=${blog.id}`;
+            blogLink.href = `./HTML/view.html?id=${blog.id}`;
             blogLink.target="blank";
             blogLink.innerHTML = `
                 <h2 class="cardTitle">${blog.title.toUpperCase()}</h2>
