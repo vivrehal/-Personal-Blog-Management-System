@@ -17,7 +17,7 @@ if(window.location.href.includes('blog.html'))
     const oldblog = getBlogById(oldblogId);
     if(oldblog){
         document.getElementById("editor").innerHTML=oldblog.content;
-        document.getElementById("cover").src=`${oldblog.url}>`;
+        document.getElementById("cover").src=`${oldblog.url}`;
         document.getElementById("title").value=oldblog.title; 
     }
 
@@ -110,7 +110,7 @@ async function saveBlog(){
     else{
         let blogsc = JSON.parse(localStorage.getItem("blogs")) || [];
         const oldUrl=document.getElementById("cover").src;
-        blogsc[blogsc.length-1].url=oldUrl.substring(0,oldUrl.length-1);
+        blogsc[blogsc.length-1].url=oldUrl;
         localStorage.setItem("blogs", JSON.stringify(blogsc));
     }
     // console.log(img.url)
@@ -125,8 +125,8 @@ async function saveBlog(){
 
 else if (window.location.href.includes('index.html')){
     const blogsContainer = document.getElementById("blogs");
-    function displayBlogs() {
-        const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    const blogs = JSON.parse(localStorage.getItem("blogs")).reverse() || [];
+    function displayBlogs(blogs) {
         console.log(blogs)
         blogsContainer.innerHTML = "";
         blogs.forEach(blog => {
@@ -159,7 +159,21 @@ else if (window.location.href.includes('index.html')){
     }
    
     
-    displayBlogs();
+    displayBlogs(blogs);
+
+    function searchBlogs(query) {
+        const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+        const filteredBlogs = blogs.filter(blog => {
+            return blog.title.toLowerCase().includes(query.toLowerCase()) ||
+                   blog.content.toLowerCase().includes(query.toLowerCase());
+        });
+        displayBlogs(filteredBlogs.reverse());
+    }
+    
+    searchInput.addEventListener("input", function() {
+        const query = searchInput.value.trim();
+        searchBlogs(query);
+    });
 }
 
 else if(window.location.href.includes('view.html')){
