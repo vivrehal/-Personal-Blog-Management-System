@@ -3,7 +3,7 @@
 //blog.html
 if (window.location.href.includes('blog.html')) {
 
-
+    const oldblogId=getQueryParam("id")
     const oldblog = getBlogById(oldblogId) ;
     if (oldblog) {
         document.getElementById("editor").innerHTML = oldblog.content;
